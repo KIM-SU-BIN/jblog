@@ -7,7 +7,7 @@
 	<insert id="insert" parameterType="UsersVo">
 	<![CDATA[
 		INSERT INTO users
-		VALUES (SEQ_USERS_NO.nextval, #{userNo}, #{id}, #{userName}, #{password}, sysdate)
+		VALUES (SEQ_USERS_NO.nextval, #{id}, #{userName}, #{password}, sysdate)
 	]]>
 	</insert>
 	

@@ -18,7 +18,7 @@
 <body>
 	<div id="center-content">
 
-		<c:import url="/WEB-INF/views/includes/main-footer.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 		<!-- 메인 해더 -->
 
 
