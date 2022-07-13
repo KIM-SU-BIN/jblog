@@ -6,7 +6,7 @@
 	<insert id="insert" parameterType="categoryVo">
 		<![CDATA[
 			INSERT INTO category
-			VALUES  (SEQ_CATEGORY_NO.nextval, #{cateno}, #{id}, #{catename}, #{description}, sysdate);
+			VALUES  (SEQ_CATEGORY_NO.nextval, #{id}, #{cateName}, #{description}, sysdate)
 		]]>
 	</insert>
 

@@ -2,6 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.9//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="users">
+	
+	<!-- 로그아웃  -->
+
+
+
+
+
+
+	<!-- 로그인  -->
+	<!-- SELECT 뒤에는 컬럼명만 씀 -->
+	<select id="select" parameterType="UsersVo" resultType="UsersVo">
+	<![CDATA[
+		SELECT userNo,
+	           id
+		FROM users
+		WHERE id = #{id}
+		and password = #{password}
+	]]>
+	</select>
+	
 
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="UsersVo">

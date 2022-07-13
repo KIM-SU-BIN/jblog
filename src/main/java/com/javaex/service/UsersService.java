@@ -29,13 +29,17 @@ public class UsersService {
 	
 	//메소드 일반
 	
+	//로그아웃
+	
+	
+	
+	
+	
 	//로그인
-	public void login() {
+	public UsersVo login(UsersVo usersVo) {
 		System.out.println("UsersService>login");
 		
-		//int count = usersDao.login(usersVo);
-		
-		//return count;
+		return usersDao.login(usersVo);
 		
 	}
 	

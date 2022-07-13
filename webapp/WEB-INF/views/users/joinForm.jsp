@@ -10,9 +10,10 @@
 <title>JBlog</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/jblog.css">
-	
-<!-- js -->	
-<script type="text/javascript"src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+
+<!-- js -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 <body>
@@ -31,6 +32,7 @@
 						<col style="width: 170px;">
 						<col style="">
 					</colgroup>
+					
 					<tr>
 						<td><label for="txtId">아이디</label></td>
 						<td><input id="txtId" type="text" name="id"></td>
@@ -40,24 +42,26 @@
 						<td></td>
 						<td id="tdMsg" colspan="2">사용할 수 있는 아이디 입니다.</td>
 					</tr>
+					
 					<tr>
 						<td><label for="txtPassword">패스워드</label></td>
 						<td><input id="txtPassword" type="password" name="password"
 							value=""></td>
 						<td></td>
 					</tr>
+					
 					<tr>
 						<td><label for="txtUserName">이름</label></td>
-						<td><input id="txtUserName" type="text" name="userName"
-							value=""></td>
+						<td><input id="txtUserName" type="text" name="userName" value=""></td>
 						<td></td>
 					</tr>
+					
 					<tr>
 						<td><span>약관동의</span></td>
-						<td colspan="3"><input id="chkAgree" type="checkbox"
-							name="agree" value="y"> <label for="chkAgree">서비스
-								약관에 동의합니다.</label></td>
+						<td colspan="3"><input id="chkAgree" type="checkbox" name="agree" value="y"> 
+						<label for="chkAgree">서비스 약관에 동의합니다.</label></td>
 					</tr>
+					
 				</table>
 				<div id="btnArea">
 					<button id="btnJoin" class="btn" type="submit">회원가입</button>
@@ -73,6 +77,5 @@
 	</div>
 
 </body>
-
 
 </html>

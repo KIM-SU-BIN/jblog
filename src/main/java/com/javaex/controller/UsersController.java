@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.javaex.service.UsersService;
 import com.javaex.vo.UsersVo;
 
-@RequestMapping(value = "/users", method = { RequestMethod.GET, RequestMethod.POST })
+@RequestMapping(value = "/users", method = {RequestMethod.GET, RequestMethod.POST })
 @Controller
 public class UsersController {
 	// 필드
@@ -21,10 +23,21 @@ public class UsersController {
 	// 메소드
 
 	// 일반 메소드
-//--------------------------------------------------카테고리--------------------------------------------------//
-
 	
-	
+//--------------------------------------------------로그아웃--------------------------------------------------//
+	//로그아웃
+	@RequestMapping(value = "/logout")
+	public String logout(HttpSession session) {
+		System.out.println("UsersController>logout");
+		
+		//저장되어있는 로그인 정보 (authUser)삭제
+		session.removeAttribute("authUser");
+		
+		//밖에 있는 빈통(session) 삭제
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 	
 //--------------------------------------------------로그인--------------------------------------------------//
 	// 로그인폼
@@ -37,14 +50,26 @@ public class UsersController {
 	
 
 	// 로그인 -> usersNo, id 필요 
+	//	로그인 성공과 실패인 경우 리턴 주소값이 다르기 때문에 서비스가 아닌 컨트롤러에 작성
 	@RequestMapping(value = "/login")
-	public String login(@ModelAttribute UsersVo usersVo) {
+	public String login(@ModelAttribute UsersVo usersVo, HttpSession session) {
 		System.out.println("UsersController>login");
 		
-		//UsersVo authUser = usersService.login(usersVo);
+		//서비스로 보내기
+		UsersVo authUser = usersService.login(usersVo);
 		
-				
-		return "users/main";
+		
+		if(authUser != null) {
+			
+			//로그인 성공
+			System.out.println("로그인 성공");
+			session.setAttribute("authUser", authUser);
+			return "redirect:/";
+			
+		}else {
+			System.out.println("로그인 실패");
+			return "redirect:/users/loginForm?login=fail";
+		}
 	}
 
 //--------------------------------------------------회원가입(폼)--------------------------------------------------//
@@ -69,6 +94,7 @@ public class UsersController {
 		return "users/joinSuccess";
 	}
 
-	// 아이디중복찾기 => ajax 11일 보승이한테 배울 예정
+	
+	// 아이디 중복찾기 => ajax 보승이한테 배울 예정
 
-}
+	}

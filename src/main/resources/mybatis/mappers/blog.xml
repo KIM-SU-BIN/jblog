@@ -6,7 +6,7 @@
 	<insert id="insert" parameterType="BlogVo" >
 	<![CDATA[
 		INSERT INTO blog
-		VALUES (#{id}, #{blogtitle}, #{logofile})
+		VALUES (#{id}, #{blogTitle}, #{logoFile})
 		]]>
 	</insert>
 

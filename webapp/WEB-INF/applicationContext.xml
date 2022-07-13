@@ -33,8 +33,8 @@
 		class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
 		<property name="URL"
 			value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="user" value="phonedb" />
-		<property name="password" value="phonedb" />
+		<property name="user" value="jblog" />
+		<property name="password" value="jblog" />
 		<property name="connectionCachingEnabled" value="true" />
 		<qualifier value="main-db" />
 	</bean>

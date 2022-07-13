@@ -15,7 +15,7 @@
 <body>
 	<div id="center-content">
 	
-		<c:import url="/WEB-INF/views/includes/main-footer.jsp"></c:import>		
+		<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>		
 		<!-- 메인 해더 -->
 		
 		
@@ -25,7 +25,7 @@
 					   회원 가입 및 블로그가 성공적으로 만들어 졌습니다.
 			    </span>
 			<br><br>
-			<a href="${pageContext.request.contextPath}/user/loginForm">[로그인 하기]</a>
+			<a href="${pageContext.request.contextPath}/users/loginForm">[로그인 하기]</a>
 			</p>
 		</div>
 		
