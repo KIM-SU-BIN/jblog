@@ -9,5 +9,22 @@
 		VALUES (#{id}, #{blogTitle}, #{logoFile})
 		]]>
 	</insert>
+	
+	
+	<select id="getblog" parameterType="BlogVo" resultType="BlogVo">
+	<![CDATA[
+		select BLOGTITLE,
+			   b.ID,
+			   USERNAME, 
+			   LOGOFILE
+		FROM users u, blog b
+		where u.id = b.id	
+		]]>
+	</select>
+	
+	
+	
+	
+	
 
 </mapper>
