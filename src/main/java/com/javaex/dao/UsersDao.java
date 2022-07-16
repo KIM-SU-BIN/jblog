@@ -19,10 +19,6 @@ public class UsersDao {
 	
 	//메소드 일반
 
-	//로그아웃
-	
-	
-	
 	//로그인
 	public UsersVo login(UsersVo usersVo) {
 		System.out.println("UsersDao>login");
