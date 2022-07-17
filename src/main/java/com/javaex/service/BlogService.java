@@ -14,10 +14,13 @@ public class BlogService {
 	@Autowired
 	BlogDao blogDao;
 
-	public static Map<String, Object> getBlog(String id) {
+	//메인화면
+	public Map<String, Object> getBlog(String id) {
 		System.out.println("BlogService>getBlog");
 		
-		return null;
+		Map<String, Object> blogMap = blogDao.getBlog(id);
+		
+		return blogMap;
 	}
 	
 	//생성자

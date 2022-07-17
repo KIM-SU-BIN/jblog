@@ -3,6 +3,7 @@
 
 <mapper namespace="blog">
 
+	<!-- 기본 insert -->
 	<insert id="insert" parameterType="BlogVo" >
 	<![CDATA[
 		INSERT INTO blog
@@ -11,20 +12,21 @@
 	</insert>
 	
 	
-	<select id="getblog" parameterType="BlogVo" resultType="BlogVo">
+	<!-- 메인화면 -->
+	<!-- parameterType="String" => id의 타입 
+		resultType="map" => map 사용시 resultType map 사용 시 map 쓰기
+	-->
+	
+	<select id="getBlog" parameterType="String" resultType="map">
 	<![CDATA[
 		select BLOGTITLE,
 			   b.ID,
 			   USERNAME, 
 			   LOGOFILE
 		FROM users u, blog b
-		where u.id = b.id	
+		where u.id = b.id
+		and b.id = #{value}	
 		]]>
 	</select>
 	
-	
-	
-	
-	
-
-</mapper>
+	</mapper>

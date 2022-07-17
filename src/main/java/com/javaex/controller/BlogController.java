@@ -24,12 +24,12 @@ public class BlogController {
 	
 	//메소드 일반
 	
-	//메인화면 class는 대문자!
+	//메인화면 (class는 대문자!)
 	@RequestMapping(value = "/{id}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String main(Model model, @PathVariable String id) {
 		System.out.println("BlogController>main");
 		
-		Map<String, Object> blogMap = BlogService.getBlog(id);
+		Map<String, Object> blogMap = blogService.getBlog(id);
 		model.addAttribute("blogMap", blogMap);
 		
 		return "blog/blog-main";
