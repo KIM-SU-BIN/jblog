@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!DOCTYPE html>
@@ -12,7 +13,8 @@
 
 <body>
 	<div id="wrap">
-		
+	
+		<c:import url="/WEB-INF/views/includes/blog-header.jsp"></c:import>
 		<!-- 개인블로그 해더 -->
 
 
@@ -61,6 +63,7 @@
 		</div>	
 		<!-- //content -->
 		
+		<c:import url="/WEB-INF/views/includes/blog-footer.jsp"></c:import>
 		<!-- 개인블로그 푸터 -->
 	
 	
