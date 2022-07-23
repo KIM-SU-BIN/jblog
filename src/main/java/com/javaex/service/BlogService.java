@@ -19,6 +19,7 @@ public class BlogService {
 	public BlogVo getBasic (String id) {	
 		System.out.println("BlogService>getBasic");
 		
+		//getBasic
 		//blogVo
 		BlogVo blogVo = blogDao.getBasic(id);
 		

@@ -23,6 +23,7 @@ public class BlogController {
 	//메소드
 	
 	//메소드 일반
+	
 	//내블로그 관리폼 수정
 	@RequestMapping(value = "/{id}/admin/basic", method = {RequestMethod.GET, RequestMethod.POST})
 	public String basic(Model model, @PathVariable String id) {
