@@ -20,6 +20,15 @@ public class BlogDao {
 	//메소드
 	
 	//메소드 일반
+	//내블로그 관리폼 수정
+	public BlogVo getBasic(String id) {
+		System.out.println("BlogDao>getBasic");
+		
+		//blogVo
+		BlogVo blogVo = sqlSession.selectOne("blog.getBasic",id);
+		
+		return blogVo;
+	}
 	
 	//회원가입시 블로그 생성
 	

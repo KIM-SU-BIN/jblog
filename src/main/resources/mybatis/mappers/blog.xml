@@ -3,19 +3,31 @@
 
 <mapper namespace="blog">
 
+
+	<!-- 내블로그 수정 -->
+	<select id="getBasic" parameterType="String" resultType="BlogVo">
+	<![CDATA[
+		select blogTitle,
+			   logoFile
+		From blog
+		where id = #{id}
+	]]>
+	</select>
+
+
 	<!-- 기본 insert -->
-	<insert id="insert" parameterType="BlogVo" >
+	<!--<insert id="insert" parameterType="BlogVo" >
 	<![CDATA[
 		INSERT INTO blog
 		VALUES (#{id}, #{blogTitle}, #{logoFile})
 		]]>
 	</insert>
+	getBlog 사용 ==>> 내블로그 관리폼 수정에서 사용하려고 만들었으나 메인에서 getBlog 만들 때 가져오는 정보와 동일하여 중복으로 사용! -->
 	
 	
 	<!-- 메인화면 -->
 	<!-- parameterType="String" => id의 타입 
-		resultType="map" => map 사용시 resultType map 사용 시 map 쓰기
-	-->
+		resultType="map" => map 사용시 resultType map 사용 시 map 쓰기 -->
 	
 	<select id="getBlog" parameterType="String" resultType="map">
 	<![CDATA[

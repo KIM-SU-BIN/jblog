@@ -33,13 +33,15 @@
 							<col style="width: 100px;">
 							<col style="">
 						</colgroup>
+						
+						<!-- Map 사용시 blogMap.BLOGTITLE} blogTilte은 대문자로 사용 / Vo인 경우 소문자로 사용 -->
 			      		<tr>
 			      			<td><label for="textTitle">블로그 제목</label></td>
-			      			<td><input id="textTitle" type="text" name="blogTitle" value=""></td>
+			      			<td><input id="textTitle" type="text" name="blogTitle" value="${blogMap.BLOGTITLE}"></td>
 			      		</tr>
 			      		<tr>
 			      			<td><label>로고이미지</label></td>
-			      			<td class="text-left"><img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>   
+			      			<td class="text-left"><img src="${pageContext.request.contextPath}/${blogMap.LOGOFILE}"></td>   
 			      		</tr>      		
 			      		<tr>
 			      			<td>&nbsp;</td>
