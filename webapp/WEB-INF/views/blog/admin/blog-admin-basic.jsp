@@ -27,7 +27,7 @@
 			<!-- //admin-menu -->
 			
 			<div id="admin-content">
-				<form action="" method="post" >
+				<form action="${pageContext.request.contextPath}/${blogMap.ID}/admin/modify" method="post" enctype="multipart/form-data">
 	 		      	<table id="admin-basic">
 	 		      		<colgroup>
 							<col style="width: 100px;">

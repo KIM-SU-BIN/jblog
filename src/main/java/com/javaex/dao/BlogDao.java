@@ -20,6 +20,25 @@ public class BlogDao {
 	//메소드
 	
 	//메소드 일반
+	//logo file 가져오기
+	public String getImg(String id) {
+		System.out.println("BlogDao>getImg");
+		
+		String getImg = sqlSession.selectOne("blog.getImg", id);
+				
+		return getImg;
+	}
+	
+	//블로그 수정(이미지 파일도 수정 가능)
+	public int modify(BlogVo blogVo) {
+		System.out.println("BlogDao>modify");
+		
+		//db로 넘기기
+		int count = sqlSession.update("blog.modify", blogVo);
+		
+		return 0;
+	}
+	
 	//내블로그 관리폼 수정
 	public BlogVo getBasic(String id) {
 		System.out.println("BlogDao>getBasic");
