@@ -30,11 +30,7 @@ public class BlogController {
 	@RequestMapping(value = "/{id}/admin/modify", method = {RequestMethod.GET, RequestMethod.POST})
 	public String modify(@PathVariable String id, @RequestParam("blogTitle") String blogTitle, 
 			@RequestParam("file") MultipartFile file){
-		
 		System.out.println("BlogController>modify");
-		
-		
-		
 		
 		//서비스로 보내기
 		int count = blogService.modify(id, blogTitle, file);
@@ -56,7 +52,6 @@ public class BlogController {
 		
 		return "blog/admin/blog-admin-basic";
 	}
-	
 	
 	//메인화면 (class는 대문자!)
 	@RequestMapping(value = "/{id}", method = {RequestMethod.GET, RequestMethod.POST})

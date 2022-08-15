@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>JBlog</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/jblog.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 
 <!-- js -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 <body>
@@ -20,11 +17,8 @@
 
 		<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 		<!-- 메인 해더 -->
-
-
 		<div>
-			<form id="joinForm" method="post"
-				action="${pageContext.request.contextPath}/users/join">
+			<form id="joinForm" method="post" action="${pageContext.request.contextPath}/users/join">
 				<table>
 					<colgroup>
 						<col style="width: 100px;">
@@ -76,5 +70,33 @@
 	</div>
 
 </body>
-
+	<script type="text/javascript">
+	$("#btnIdCheck").on("click", function(){
+		
+		var id = $("#txtId").val();
+		console.log(id);	
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/api/users/checkId", //컨트롤러 RequestMapping url 작성하기
+			type : "post",
+			//contentType : "application/json", //@RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
+			data : JSON.stringify(id), //@RequestBody로 데이터 보낼때 필수 (정보 보낼거 없으면 필요없음)
+			//data: Vo //@ModelAttribute나 @RequestParam으로 데이터 보낼때 이용 (정보 보낼거 없으면 필요없음)
+			dataType : "json",
+			success : function(result){
+				//컨트롤러 함수 실행 후 코드
+				//컨트롤러에서 return 값이 돌아옴
+				
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		// ----------- ajax 끝 ----------- //
+		
+	});
+	
+	
+	</script>
 </html>
