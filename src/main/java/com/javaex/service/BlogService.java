@@ -38,14 +38,15 @@ public class BlogService {
 			String orgName = file.getOriginalFilename();
 			String exName = orgName.substring(orgName.lastIndexOf("."));
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-		
+			//currentTimeMillis 시간을 1000분의 1초 간격으로 현재시간 제공, UUID 랜덤으로 부여하는 문자
+			
 			//로고 파일 저장 => 경로 생성
 			logoFile = "/upload/" + saveName;
 
 			//filePath를 저장할 실제 경로
 			String filePath = "C:\\javastudy\\upload\\" + saveName;
 			
-			try {
+			try {															//실제 파일 업로드 과정	
 				byte[] fileData = file.getBytes();
 				
 				OutputStream os = new FileOutputStream(filePath);			//logoFile 경로로 이미지가 저장됨
@@ -55,11 +56,9 @@ public class BlogService {
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
-		} else {	//이미지 사진 변경하지 않아도 유지하기
+		} else {															//이미지 사진 변경하지 않아도 유지하기
 			logoFile = blogDao.getImg(id);
 		}
-
-		
 		//Vo 생성 (빈통생성)
 		BlogVo blogVo = new BlogVo();
 		

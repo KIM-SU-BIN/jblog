@@ -70,7 +70,10 @@
 	</div>
 
 </body>
+	
 	<script type="text/javascript">
+	
+	<!-- ID 중복확인 -->	
 	$("#btnIdCheck").on("click", function(){
 		
 		var id = $("#txtId").val();
@@ -79,14 +82,16 @@
 		$.ajax({
 			url : "${pageContext.request.contextPath}/api/users/checkId", //컨트롤러 RequestMapping url 작성하기
 			type : "post",
-			//contentType : "application/json", //@RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
+			//contentType : "application/json", ==>> @RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
 			data : JSON.stringify(id), //@RequestBody로 데이터 보낼때 필수 (정보 보낼거 없으면 필요없음)
 			//data: Vo //@ModelAttribute나 @RequestParam으로 데이터 보낼때 이용 (정보 보낼거 없으면 필요없음)
-			dataType : "json",
-			success : function(result){
-				//컨트롤러 함수 실행 후 코드
-				//컨트롤러에서 return 값이 돌아옴
+			dataType : {id},
+			success : function(result){				//컨트롤러 함수 실행 후 코드, 컨트롤러에서 return 값이 돌아옴
 				
+				console.log(result);	
+			
+			
+			
 				
 			},
 			error : function(XHR, status, error) {
