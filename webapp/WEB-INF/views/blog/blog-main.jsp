@@ -22,7 +22,7 @@
 				<div id="profile">
 					
 					<!-- 기본이미지 -->
-					<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+					<img id="proImg" src="${pageContext.request.contextPath}/${blogMap.LOGOFILE}">
 					
 					<!-- 사용자업로드 이미지 -->
 					<%-- <img id="proImg" src=""> --%>
@@ -33,15 +33,12 @@
 					<div class="text-left">
 						<strong>카테고리</strong>
 					</div>
+					
+				<c:if test=" ">
 					<ul id="cateList" class="text-left">
-						<li><a href="$}">카테고리5</a></li>
-						<li><a href="$}">카테고리4</a></li>
-						<li><a href="$}">카테고리3</a></li>
-						<li><a href="$}">카테고리2</a></li>
-						<li><a href="$}">카테고리1</a></li>
 						<li><a href="$}">미분류</a></li>
-						
 					</ul>
+				</c:if>	
 				</div>
 			</div>
 			<!-- profilecate_area -->
@@ -51,7 +48,7 @@
 				<div id="postBox" class="clearfix">
 						<div id="postTitle" class="text-left"><strong>08.페이징</strong></div>
 						<div id="postDate" class="text-left"><strong>2020/07/23</strong></div>
-						<div id="postNick">정우성(hijava)님</div>
+						<div id="postNick">${blogMap.ID}님</div>
 				</div>
 				<!-- //postBox -->
 			
