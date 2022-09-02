@@ -37,6 +37,23 @@ public class UsersService {
 		
 	}
 	
+	//아이디 중복확인
+	public String idCheck(String idCheck) {
+		System.out.println("UsersService>idCheck");
+		
+		String usersVo = usersDao.getId(id);
+		
+		if (usersVo == null) {
+			
+			// 중복된게 없을때 성공
+			return "success";
+			
+		} else {
+			return "fail";
+		}
+		
+	}
+	
 	//회원가입
 	public int join(UsersVo usersVo) {
 		System.out.println("UsersService>join");

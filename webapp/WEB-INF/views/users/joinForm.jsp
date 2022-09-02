@@ -33,7 +33,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td id="tdMsg" colspan="2">사용할 수 있는 아이디 입니다.</td>
+						<td id="tdMsg" colspan="2"></td>
 					</tr>
 					
 					<tr>
@@ -71,37 +71,56 @@
 
 </body>
 	
-	<script type="text/javascript">
+<script type="text/javascript">
+
+<!-- ID 중복확인 -->
+var idChecked = false;
+
+$("#btnIdCheck").on("click", function(){
 	
-	<!-- ID 중복확인 -->	
-	$("#btnIdCheck").on("click", function(){
+	var idCheck = $("#txtId").val();
+	console.log(id);	
+	
+	//db에 있는 id와 일치하는지 확인
+	var usersVo = {
+			id : id
+	};
+	
+	if(idCheck == ""){
+		alert("아이디를 입력하세요.");
+		return;
+	}
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/api/user/idCheck", //컨트롤러 RequestMapping url 작성하기
+		type : "post",
+		//contentType : "application/json",								==>> @RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
+		data : JSON.stringify(idCheck), 								//@RequestBody로 데이터 보낼때 필수 (정보 보낼거 없으면 필요없음)
+																		//@ModelAttribute나 @RequestParam으로 데이터 보낼때 이용 (정보 보낼거 없으면 필요없음)
+		dataType : "json",
+		success : function(result){				//컨트롤러 함수 실행 후 코드, 컨트롤러에서 return 값이 돌아옴
+			
+			//성공시 처리해야 되는 코드
+			console.log(result);	
 		
-		var id = $("#txtId").val();
-		console.log(id);	
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/api/users/checkId", //컨트롤러 RequestMapping url 작성하기
-			type : "post",
-			//contentType : "application/json", ==>> @RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
-			data : JSON.stringify(id), //@RequestBody로 데이터 보낼때 필수 (정보 보낼거 없으면 필요없음)
-			//data: Vo //@ModelAttribute나 @RequestParam으로 데이터 보낼때 이용 (정보 보낼거 없으면 필요없음)
-			dataType : {id},
-			success : function(result){				//컨트롤러 함수 실행 후 코드, 컨트롤러에서 return 값이 돌아옴
+			if(id != null || id != ""){
 				
-				console.log(result);	
-			
-			
-			
-				
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-		// ----------- ajax 끝 ----------- //
-		
+				if(result == "success"){
+					$("#btnIdCheck").html("<font color='blue'>사용할 수 있는 아이디입니다.</font>");
+					idCheck = 1;
+					
+			}else{
+					$("#btnIdCheck").html("<font color='red'>사용할 수 없는 아이디입니다.</font>");
+				};
+			} 
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
 	});
+	// ----------- ajax 끝 ----------- //
 	
-	
-	</script>
+});
+
+</script>
 </html>

@@ -26,6 +26,13 @@ public class UsersDao {
 		return sqlSession.selectOne("users.select", usersVo);
 	}
 	
+	//아이디 중복확인
+	public String idCheck(String idCheck) {
+		System.out.println("UsersDao>idCheck");
+		
+		return sqlSession.selectOne("users.idCheck", idCheck);
+		
+	}
 	
 	//회원가입
 	public int join(UsersVo usersVo) {

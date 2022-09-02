@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UsersService;
 import com.javaex.vo.UsersVo;
@@ -94,7 +95,13 @@ public class UsersController {
 		return "users/joinSuccess";
 	}
 
-	
-	// 아이디 중복찾기 => ajax 보승이한테 배울 예정
-
+	// 아이디 중복찾기
+	@ResponseBody
+	@RequestMapping(value="/idCheck", method={RequestMethod.GET, RequestMethod.POST})
+	public String idCheck(@ModelAttribute UsersVo usersVo) {
+		System.out.println("UsersController>idCheck");
+		
+		return usersService.idCheck(usersVo.getId());
 	}
+
+}
