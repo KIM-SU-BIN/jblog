@@ -90,7 +90,7 @@ $("#btnIdCheck").on("click", function(){
 	$.ajax({
 		url : "${pageContext.request.contextPath}/api/users/idCheck", //컨트롤러 RequestMapping url 작성하기
 		type : "post",
-		contentType : "application/json",								//==>> @RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
+		contentType : "application/json",								//@RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
 		data : JSON.stringify(idCheck), 								//@RequestBody로 데이터 보낼때 필수 (정보 보낼거 없으면 필요없음)
 																		//@ModelAttribute나 @RequestParam으로 데이터 보낼때 이용 (정보 보낼거 없으면 필요없음)
 		dataType : "json",
@@ -98,10 +98,10 @@ $("#btnIdCheck").on("click", function(){
 			
 			//성공시 처리해야 되는 코드
 			if(check == true){
-					$("#btnIdCheck").html("<font color='blue'>사용할 수 있는 아이디입니다.</font>");
+					$("#tdMsg").html("<font color='blue'>사용할 수 있는 아이디입니다.</font>");
 					
 			}else{
-					$("#btnIdCheck").html("<font color='red'>사용할 수 없는 아이디입니다.</font>");
+					$("#tdMsg").html("<font color='red'>사용할 수 없는 아이디입니다.</font>");
 			}
 		},
 		error : function(XHR, status, error) {

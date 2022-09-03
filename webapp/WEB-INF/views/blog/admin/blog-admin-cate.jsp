@@ -46,25 +46,7 @@
 		      		</thead>
 		      		<tbody id="cateList">
 		      			<!-- 리스트 영역 -->
-		      			<tr>
-							<td>1</td>
-							<td>자바프로그래밍</td>
-							<td>7</td>
-							<td>자바기초와 객체지향</td>
-						    <td class='text-center'>
-						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
-						    </td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>오라클</td>
-							<td>5</td>
-							<td>오라클 설치와 sql문</td>
-						    <td class='text-center'>
-						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
-						    </td>
-						</tr>
-						<!-- 리스트 영역 -->
+		      			
 					</tbody>
 				</table>
       	
@@ -75,11 +57,11 @@
 					</colgroup>
 		      		<tr>
 		      			<td class="t">카테고리명</td>
-		      			<td><input type="text" name="name" value=""></td>
+		      			<td><input type="text" name="cateName" value=""></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input type="text" name="desc"></td>
+		      			<td><input type="text" name="description"></td>
 		      		</tr>
 		      	</table> 
 			
@@ -95,15 +77,103 @@
 		<c:import url="/WEB-INF/views/includes/blog-footer.jsp"></c:import>
 		<!-- 개인블로그 푸터 -->
 		
-	
-	
 	</div>
 	<!-- //wrap -->
+	
 </body>
 <script>
+//user에 저장되어 있는 id 불러옴, ready, click 모두 사용
+var id = '${authUser.id}'; 
 
+//리스트 불러오기
+$(document).ready(function(){
+	
+	$.ajax({
+		//보낼때
+		url : "${pageContext.request.contextPath}/api/category/getCateList", //컨트롤러 RequestMapping url 작성하기
+		type : "post",
+		contentType : "application/json", 							//@RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
+		data : JSON.stringify(id), 								//@RequestBody로 데이터 보낼때 필수 (정보 보낼거 없으면 필요없음)
+																	//@ModelAttribute나 @RequestParam으로 데이터 보낼때 이용 (정보 보낼거 없으면 필요없음)
+		//받을때
+		dataType : "json",
+		success : function(result){
+			
+			//컨트롤러 함수 실행 후 코드
+			//if(result=="")
+			for(var i=0; i<result.length; i++){
+				render(result[i], 'down');
+			}
+		},
+		
+		error : function(XHR, status, error) {
+		console.error(status + " : " + error);
+		}
+	});	
+});
 
+//카테고리 항목 추가
+$("#btnAddCate").on("click", function() {
+	
+	//value 값 가져오기 / [속성 = 속성값] => html태그의 속성
+	var cateName = $("[name=cateName]").val();
+	var description = $("[name=description]").val();
+	
+	
+	var cVo = {
+			cateName : cateName,
+			description : description,
+			id : id
+	}
+	
+	$.ajax({
+		//보낼때
+		url : "${pageContext.request.contextPath}/api/category/addCategory", //컨트롤러 RequestMapping url 작성하기
+		type : "post",
+		contentType : "application/json", 							//@RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
+		data : JSON.stringify(cVo), 								//@RequestBody로 데이터 보낼때 필수 (정보 보낼거 없으면 필요없음)
+																	//@ModelAttribute나 @RequestParam으로 데이터 보낼때 이용 (정보 보낼거 없으면 필요없음)
+		//받을때
+		dataType : "json",
+		success : function(result){
+			console.log(result);
+			
+			render(result, 'up');
+			//컨트롤러 함수 실행 후 코드
+			//if(result=="")
+			
+			
+		},
+		
+		error : function(XHR, status, error) {
+		console.error(status + " : " + error);
+		}
+	});	
+});
 
-
+//화면 보이기
+var render = function(caVo, order){
+	if(caVo.PCOUNT == undefined) {
+		caVo.PCOUNT = 0;
+	}
+	
+	var str = '';
+	str += '<tr>';
+	str += '	<td>' + caVo.CATENO + '</td>';
+	str += '	<td>' + caVo.CATENAME + '</td>';
+	str += '	<td>' + caVo.PCOUNT + '</td>';
+	str += '	<td>' + caVo.DESCRIPTION + '</td>';
+	str += '	<td class="text-center">';
+	str += '		<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
+	str += '	</td>';
+	str += '</tr>';
+	
+	if(order == 'down'){
+		$("#cateList").append(str);
+	} else {
+		$("#cateList").prepend(str);
+	}
+	
+};
 </script>
 </html>
