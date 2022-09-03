@@ -95,13 +95,6 @@ public class UsersController {
 		return "users/joinSuccess";
 	}
 
-	// 아이디 중복찾기
-	@ResponseBody
-	@RequestMapping(value="/idCheck", method={RequestMethod.GET, RequestMethod.POST})
-	public String idCheck(@ModelAttribute UsersVo usersVo) {
-		System.out.println("UsersController>idCheck");
-		
-		return usersService.idCheck(usersVo.getId());
-	}
+
 
 }

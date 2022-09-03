@@ -38,20 +38,17 @@ public class UsersService {
 	}
 	
 	//아이디 중복확인
-	public String idCheck(String idCheck) {
+	public boolean idCheck(String idCheck) {
 		System.out.println("UsersService>idCheck");
 		
-		String usersVo = usersDao.getId(id);
+		String id = usersDao.getId(idCheck);
+		System.out.println(id);
 		
-		if (usersVo == null) {
-			
-			// 중복된게 없을때 성공
-			return "success";
-			
+		if(id == null) {
+			return true;
 		} else {
-			return "fail";
+			return false;
 		}
-		
 	}
 	
 	//회원가입

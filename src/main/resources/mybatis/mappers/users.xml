@@ -3,7 +3,7 @@
 
 <mapper namespace="users">
 	<!-- 아이디 중복확인  -->
-	<select id="idCheck" parameterType="String" resultType="usersVo">
+	<select id="idCheck" parameterType="String" resultType="String">
 		<![CDATA[
 			select id
 			from users

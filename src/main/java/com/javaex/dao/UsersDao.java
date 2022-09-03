@@ -27,7 +27,7 @@ public class UsersDao {
 	}
 	
 	//아이디 중복확인
-	public String idCheck(String idCheck) {
+	public String getId(String idCheck) {
 		System.out.println("UsersDao>idCheck");
 		
 		return sqlSession.selectOne("users.idCheck", idCheck);
