@@ -85,7 +85,7 @@
 //user에 저장되어 있는 id 불러옴, ready, click 모두 사용
 var id = '${authUser.id}'; 
 
-//리스트 불러오기 추가하기
+//리스트 불러오기
 $(document).ready(function(){
 	
 	$.ajax({
@@ -127,11 +127,10 @@ $("#btnAddCate").on("click", function() {
 	
 	$.ajax({
 		//보낼때
-		url : "${pageContext.request.contextPath}/api/category/addCategory", //컨트롤러 RequestMapping url 작성하기
+		url : "${pageContext.request.contextPath}/api/category/addCategory", 
 		type : "post",
-		contentType : "application/json", 							//@RequestBody로 파라미터 가져오기 위해 필수 (정보 보낼거 없으면 필요없음)
-		data : JSON.stringify(cVo), 								//@RequestBody로 데이터 보낼때 필수 (정보 보낼거 없으면 필요없음)
-																	//@ModelAttribute나 @RequestParam으로 데이터 보낼때 이용 (정보 보낼거 없으면 필요없음)
+		contentType : "application/json", 							
+		data : JSON.stringify(cVo), 								
 		//받을때
 		dataType : "json",
 		success : function(result){
